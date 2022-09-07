@@ -18,11 +18,13 @@
 
 ![ㅋㅇㄴㅍ](https://user-images.githubusercontent.com/66409384/186609149-b5f41b86-4780-4414-9d3c-02afb5a3693a.png)
 
+---
+
 # Consturction Skills
 
 - `Ethereum Testnet (Goerli)` : Blockchain Network
 - `IPFS` : Decentralized Object Storage
-- `ethers.js` : web3 interaction javascript library (using in, Client)
+- `ethers.js` : web3 interaction javascript library
 - `React` : Client Development
 - `Axios` : HTTP Client Library
 - `TypeScript`
@@ -35,4 +37,8 @@
 
 ---
 
-# About
+# Key Logic
+
+- Higher-Order-Component를 통해 AuthCehck와 유저정보를 전달했다.
+- Estimate Gas와 Call Static을 순차적으로 호출해 트랜잭션 실패 확률을 대폭 낮추었다.
+- 리뷰 정보를 NFT.Storage(IPFS)에 저장하여 수정, 삭제가 불가하다.
