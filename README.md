@@ -41,4 +41,3 @@
 
 - Higher-Order-Component를 통해 AuthCehck와 유저정보를 전달했다.
 - Estimate Gas와 Call Static을 순차적으로 호출해 트랜잭션 실패 확률을 대폭 낮추었다.
-- 리뷰 정보를 NFT.Storage(IPFS)에 저장하여 수정, 삭제가 불가하다.
