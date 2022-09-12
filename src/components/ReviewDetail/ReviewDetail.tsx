@@ -9,7 +9,7 @@ import {
   _nftContract,
   _serviceContract,
 } from "../../abi/modules/ethers";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {ethers} from "ethers";
 import {UserInfoType} from "../../types/types";
 import api from "../../AxiosConfig";
@@ -21,11 +21,14 @@ function ReviewDetail({UserInfo}: {UserInfo: UserInfoType[]}) {
   const [StoreName, setStoreName] = useState<string>("");
   const [SpinnerFlag, setSpinnerFlag] = useState<boolean>(false);
   const [ReviewPrice, setReviewPrice] = useState<string>("");
+  const [BtnFlag, setBtnFlag] = useState<boolean>(false);
   const params = useParams();
 
   useEffect(() => {
     getReviewDetail();
   }, []);
+
+  const navi = useNavigate();
 
   const getReviewDetail = async () => {
     try {
@@ -80,11 +83,16 @@ function ReviewDetail({UserInfo}: {UserInfo: UserInfoType[]}) {
           "_blank"
         );
       }, 2000);
-    } catch (error) {}
+      navi(-1);
+    } catch (error) {
+      alert("좋아요를 실패하였습니다.");
+      navi(-1);
+    }
   };
 
   const handleBuyReview = async () => {
     try {
+      setBtnFlag(true);
       const _estimateGasLimitNft =
         await _nftContract.estimateGas.setApprovalForAll(
           serviceContract.address,
@@ -129,7 +137,12 @@ function ReviewDetail({UserInfo}: {UserInfo: UserInfoType[]}) {
           "_blank"
         );
       }, 2000);
-    } catch (error) {}
+      navi(-1);
+    } catch (error) {
+      alert("리뷰 구매를 실패하였습니다. 잠시 후 다시 시도해 주세요.");
+      setBtnFlag(false);
+      navi(-1);
+    }
   };
 
   return (
@@ -169,7 +182,7 @@ function ReviewDetail({UserInfo}: {UserInfo: UserInfoType[]}) {
                     : `${ethers.utils.formatEther(item.price)} ETH`
                 }
                 onClick={handleBuyReview}
-                disabled={item.price._hex == "0x00"}
+                disabled={item.price._hex == "0x00" || BtnFlag}
               />
             </div>
           ))}

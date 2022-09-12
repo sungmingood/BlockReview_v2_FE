@@ -1,12 +1,34 @@
 import React, {useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {provider} from "../../abi/modules/ethers";
 import LogoImg from "../../assets/images/logo.png";
 import api from "../../AxiosConfig";
 import {getCookie} from "../../hooks/Cookie";
 import {UserInfoType} from "../../types/types";
 
 function Header() {
+  const navi = useNavigate();
+  const a = useLocation();
+
+  useEffect(() => {
+    networkCheck();
+  }, [a]);
+
+  const networkCheck = async () => {
+    const {chainId} = await provider.getNetwork();
+    if (chainId !== 5) {
+      alert(
+        "네트워크를 변경해 주세요. Goerli 테스트 네트워크를 제외한 나머지 네트워크의 연결을 해제해 주세요."
+      );
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{chainId: "0x5"}],
+      });
+      navi("/");
+    }
+  };
+
   return (
     <HeaderBox>
       <Link to="/">

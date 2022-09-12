@@ -14,7 +14,7 @@ function HowTo() {
           <a href="https://metamask.io/download/" target="_blank">
             여기
           </a>
-          를 클릭해 다운로드를 진행해 주세요
+          를 클릭해 다운로드를 진행해 주세요.
         </Text>
         <Text>
           회원가입 및 사이트 이용 시 Goerli가 필요합니다.
@@ -23,6 +23,8 @@ function HowTo() {
             여기
           </a>
           를 클릭해 무료 Goerli를 받은 후 이용해 주세요.
+          <br />
+          (본 사이트는 Goerli 테스트 네트워크를 사용합니다.)
         </Text>
         <Text>
           본 사이트는 블록체인 리뷰 사이트입니다. <br />
@@ -49,6 +51,7 @@ const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  margin-bottom: 30px;
   p {
     width: 380px;
   }

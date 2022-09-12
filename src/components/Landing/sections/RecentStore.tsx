@@ -11,6 +11,7 @@ import styled from "styled-components";
 
 function RecentStore() {
   const [StoreList, setStoreList] = useState<StoreType[]>([]);
+
   useEffect(() => {
     getRecentStore();
   }, []);
@@ -31,17 +32,23 @@ function RecentStore() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {StoreList.map((item) => (
-          <SwiperSlide key={item.id}>
-            <Link to={`/store/${item.id}`}>
-              <StoreLayout
-                name={item.name}
-                address={item.address}
-                imgUrl={item.imgUrl}
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
+        {StoreList.length !== 0 ? (
+          <>
+            {StoreList.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Link to={`/store/${item.id}`}>
+                  <StoreLayout
+                    name={item.name}
+                    address={item.address}
+                    imgUrl={item.imgUrl}
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </>
+        ) : (
+          <h1></h1>
+        )}
       </Swiper>
     </Box>
   );

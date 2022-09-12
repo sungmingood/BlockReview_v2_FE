@@ -23,15 +23,20 @@ function MyPage({UserInfo}: {UserInfo: UserInfoType[]}) {
     const _getMyReviews = await _serviceContract.functions.getReview_ByOwner(
       address
     );
-
     const _getAllReviews = await _serviceContract.functions.getEveryReview();
-    const likedReviews = _getAllReviews[0].filter(
-      (item: any) => item.likedUser[0] == address
-    );
 
+    let review: any = [];
+    _getAllReviews[0].map((item: any) => {
+      if (item.likedUser.length !== 0) {
+        item.likedUser.map((itm: any) => {
+          if (itm.toLowerCase() == address.toLowerCase()) {
+            review.push([item]);
+          }
+        });
+      }
+    });
+    setLikedReviews(review);
     const reviews = _getMyReviews[0].filter((item: any) => item.title != "");
-
-    setLikedReviews(likedReviews);
     setReviews(reviews);
     setSpinnerFlag(true);
   };

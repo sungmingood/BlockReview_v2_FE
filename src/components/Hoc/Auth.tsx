@@ -1,6 +1,6 @@
 import React, {Component, ComponentType, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {signer} from "../../abi/modules/ethers";
+import {provider, signer} from "../../abi/modules/ethers";
 import api from "../../AxiosConfig";
 import {removeCookie} from "../../hooks/Cookie";
 import {UserInfoType} from "../../types/types";

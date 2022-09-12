@@ -37,7 +37,11 @@ function Review({Reviews, LikedReviews}: any) {
                   판매 중
                 </BuyBtn>
               </Like>
-              <h3>2022-08-22</h3>
+              <h3>
+                {new Date(ethers.BigNumber.from(item.crDate).toNumber() * 1000)
+                  .toUTCString()
+                  .replace("GMT", "UTC")}
+              </h3>
             </ReviewBox>
           ))}
         </>
@@ -49,30 +53,42 @@ function Review({Reviews, LikedReviews}: any) {
       {LikedReviews.length > 0 ? (
         <>
           {LikedReviews.map((item: any) => (
-            <ReviewBox
-              key={item.nftId}
-              onClick={(e) => {
-                navi(`/review/${item.id._hex}`);
-              }}
-            >
-              <h1>{item.title}</h1>
-              <Like>
-                <div>
-                  <img
-                    src={
-                      item.likedUser.length !== 0 ? LikeFullIcon : LikeEmptyIcon
-                    }
-                  />
-                  <div>{item.likedUser.length}</div>
-                </div>
-                <BuyBtn
-                  className={item.price._hex !== "0x00" ? "" : "disabled"}
+            <div key={item}>
+              {item.map((itm: any) => (
+                <ReviewBox
+                  key={itm.nftId._hex}
+                  onClick={(e) => {
+                    navi(`/review/${itm.id._hex}`);
+                  }}
                 >
-                  판매 중
-                </BuyBtn>
-              </Like>
-              <h3>2022-08-22</h3>
-            </ReviewBox>
+                  <h1>{itm.title}</h1>
+                  <Like>
+                    <div>
+                      <img
+                        src={
+                          itm.likedUser.length !== 0
+                            ? LikeFullIcon
+                            : LikeEmptyIcon
+                        }
+                      />
+                      <div>{itm.likedUser.length}</div>
+                    </div>
+                    <BuyBtn
+                      className={itm.price._hex !== "0x00" ? "" : "disabled"}
+                    >
+                      판매 중
+                    </BuyBtn>
+                  </Like>
+                  <h3>
+                    {new Date(
+                      ethers.BigNumber.from(itm.crDate).toNumber() * 1000
+                    )
+                      .toUTCString()
+                      .replace("GMT", "UTC")}
+                  </h3>
+                </ReviewBox>
+              ))}
+            </div>
           ))}
         </>
       ) : (

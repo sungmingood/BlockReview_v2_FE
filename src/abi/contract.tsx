@@ -1,5 +1,5 @@
 export const nftContract = {
-  address: "0x9ae8E5782aEBe2C5E2A1624D30B1753CbEA471DE",
+  address: "0xcf2d79C8Bf94092d7EFaAf3b7496228f2DE63AC1",
   abi: [
     {
       inputs: [],
@@ -436,7 +436,7 @@ export const nftContract = {
 };
 
 export const authContract = {
-  address: "0x1AB655C9396c4D8416Fa9fabDeAd33E76fa0E24C",
+  address: "0x109e4eb8fFB2b57Dba530cfc8105D85a7E0756E4",
   abi: [
     {
       anonymous: false,
@@ -635,7 +635,7 @@ export const authContract = {
 };
 
 export const serviceContract = {
-  address: "0x973b02CCD3a66FAE8B3bf3866769DD985Ea223b3",
+  address: "0xBCc040B45E69E872730cB847fe4951ACbb901aA7",
   abi: [
     {
       inputs: [

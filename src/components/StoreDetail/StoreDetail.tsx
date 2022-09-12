@@ -51,4 +51,5 @@ export default StoreDetail;
 
 const Box = styled.div`
   padding-top: 50px;
+  padding-bottom: 30px;
 `;

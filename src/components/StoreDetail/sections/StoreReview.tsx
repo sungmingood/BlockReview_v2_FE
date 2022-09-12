@@ -50,7 +50,13 @@ function StoreReview({Reviews}: any) {
                         구매
                       </BuyBtn>
                     </Like>
-                    <h3>2022-08-22</h3>
+                    <h3>
+                      {new Date(
+                        ethers.BigNumber.from(list.crDate).toNumber() * 1000
+                      )
+                        .toUTCString()
+                        .replace("GMT", "UTC")}
+                    </h3>
                   </ReviewBox>
                 </div>
               ))}

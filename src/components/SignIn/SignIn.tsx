@@ -35,8 +35,8 @@ function SignIn() {
   const handleSignIn = async () => {
     const connect = await connectMetamask("지갑을 연결해 주세요.");
     const payload = {
-      email: Email,
-      eoa: connect,
+      email: Email as string,
+      eoa: connect as string,
     };
     try {
       const signIn = await api.post("/user/login", payload);
